@@ -1,0 +1,157 @@
+<form [formGroup]="mainFormGroup" (ngSubmit)="onSubmit()">
+
+<mat-horizontal-stepper #stepper>
+
+    <mat-step>
+      <form [formGroup]="firstFormGroup"   *ngIf="stepper.selectedIndex === 0">
+            <ng-template matStepLabel>Project description</ng-template>
+
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Insert your username"  [(ngModel)]="
+          projectDto.projectDescription.userName
+        " [formControl]="mainFormGroup.get('firstFormGroup.userName')" />
+        </mat-form-field>
+      </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Project Name</mat-label>
+                    <input matInput placeholder="insert your Project Name" [(ngModel)]="
+                    projectDto.projectDescription.projectName
+                  "  formControlName="mainFormGroup.get('firstFormGroup.projectName')" />
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Project Code</mat-label>
+                    <input matInput placeholder="insert your Project Code" [(ngModel)]="
+                    projectDto.projectDescription.projectCode
+                  " formControlName="mainFormGroup.get('firstFormGroup.projectCode')"  />
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Project Cost</mat-label>
+                    <input type="number" matInput placeholder="insert your Project Cost" [(ngModel)]="
+                    projectDto.projectDescription.projectCost
+                  " formControlName="projectCost"  />
+                </mat-form-field>
+            </div>
+
+
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Execution agency</mat-label>
+                    <input matInput placeholder="insert your Execution agency" [(ngModel)]="
+                    projectDto.projectDescription.executingAgency
+                  "  formControlName="executingAgency"  />
+                </mat-form-field>
+            </div>
+
+
+            <div>
+                <button mat-button matStepperNext mat-raised-button color="primary"
+                    style="font-size: 12px !important; padding: 4px 8px !important;">
+                    Next
+                </button>
+            </div>
+
+        </form>
+    </mat-step>
+
+    <mat-step label="Project Site and Duration">
+        <form [formGroup]="secondFormGroup"  *ngIf="stepper.selectedIndex === 1">
+
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Total duration of accounting</mat-label>
+                    <input matInput placeholder="insert your Total duration of accounting" [(ngModel)]="
+                    projectDto.projectDescription.totalDurationOfAccounting
+                  "   formControlName="totalDurationOfAccounting"   />
+                </mat-form-field>
+            </div>
+  <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Project duration</mat-label>
+                    <input matInput placeholder="Please Insert Your Implementation Phase"   [(ngModel)]="
+                    projectDto.projectDescription.implementationPhase
+                  "   formControlName="implementationPhase"   />
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Capitalization Phase</mat-label>
+                    <input matInput placeholder="Please Insert Your Capitalization Phase" [(ngModel)]="
+                    projectDto.projectDescription.capitalizationPhase
+                  "  formControlName="capitalizationPhase"    />
+                </mat-form-field>
+            </div>
+
+          
+
+
+          
+        </form>
+    </mat-step>
+ 
+    <mat-step label="Global Warming Potential">
+        <form #form="ngForm">
+            <div class="form-container">
+                <div>
+            
+                    <label for="" style="color: black;">TC/ha default Tier2</label>
+                    <input type="text" class="form-control" >
+                </div>
+                <div style="margin-top: 10px;"> 
+                    <mat-form-field appearance="fill">
+                        <mat-label>Source</mat-label>
+                       
+                        <mat-select  [(ngModel)]="selectedSource" name="selectedSource" required
+                            (selectionChange)="updateResults()" matNativeControl
+                            placeholder="Please Select Your Source">
+                            <mat-option>100yr SAR</mat-option>
+                            <mat-option>100yr AR4</mat-option>
+                            <mat-option>100yr AR5 with CC feedback</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+
+                <div class="result-table">
+                    <div>
+                        <span>CO<sub>2</sub>:</span>
+                        <span>{{ co2Result }}</span>
+                    </div>
+                    <div>
+                        <span>CH<sub>4</sub>:</span>
+                        <span>{{ ch4Result }}</span>
+                    </div>
+                    <div>
+                        <span>N<sub>2</sub>O:</span>
+                        <span>{{ n2oResult }}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </mat-step>
+
+
+</mat-horizontal-stepper>
+<div >
+    <button style="font-size: 12px !important; padding: 4px 8px !important; width: 100px;   color: aliceblue;" mat-button matStepperPrevious mat-raised-button color="warn" class="custom-button">
+        Back
+    </button>
+    <button mat-button matStepperNext mat-raised-button
+            type="submit"
+        style="font-size: 12px !important; padding: 4px 8px !important; width: 100px; margin-left: 10px; background-color: darkgreen; color: aliceblue;">Save</button>
+
+</div>
+</form>

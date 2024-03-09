@@ -1,0 +1,42 @@
+
+
+<div class="block">
+  <div class="container" #containerForm id="container">
+      <div class="form-container sign-up">
+          <form>
+              <h1>Create Account</h1>
+           
+              <span>or use your email for registeration</span>
+              <input type="text" placeholder="Name">
+              <input type="email" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <button >Sign Up</button>
+          </form>
+      </div>
+      <div class="form-container sign-in">
+          <form>  
+              <h1 style="color: #119402;">Login</h1>
+             
+          
+              <input type="email" placeholder="Email">
+              <input type="password" placeholder="Password">
+              <a href="#">Forhet password?</a>
+              <button type="button" class="btn ">Login</button>
+          </form>
+      </div>
+      <div class="toggle-container">
+          <div class="toggle">
+              <div class="toggle-panel toggle-left">
+                  <h1 style="color: white;">Login</h1>
+                  <button class="hidden" (click)="login()" id="login">Login</button>
+              </div>
+              <div class="toggle-panel toggle-right">
+                  <h2>First time?</h2>
+                  <p>Je dois crèer un compte</p>
+                  <button class="hidden" (click)="signUp()" id="register">Register</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+</div>
