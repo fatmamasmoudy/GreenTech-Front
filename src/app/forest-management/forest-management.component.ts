@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ForestManagementProducer } from 'app/admin/models/ForestManagement';
+import { ForestManagementDTO } from 'app/admin/models/ForestManagementDTO';
+import { ForestmanagmentService } from 'app/services/forestmanagment/forestmanagment.service';
 
 @Component({
   selector: 'app-forest-management',
@@ -6,108 +9,113 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forest-management.component.css']
 })
 export class ForestManagementComponent implements OnInit {
+  forestManagementProducer = new ForestManagementProducer()
+  constructor(
+    private forestService : ForestmanagmentService
+  ) { }
 
-  constructor() { }
+ 
 
-  start1: any
-  without1: any
-  with1: any
-  start2: any
-  without2: any
-  with2: any
-  start3: any
-  without3: any
-  with3: any
+
+
   withoutResult1: any
-  withoutResult2: any
-  withoutResult3: any
+
   withResult1: any
-  withResult2: any
-  withResult3: any
-  startarea1: any
-  startarea2: any
-  startarea3: any
+
+
+
   ngOnInit(): void {
     // Chart.register(...registerables);
     // this.getchart()
   }
 
   calcul(){
-    if(this.start1 == this.without1){
+    if(this.forestManagementProducer.startForestDegradationLevel == this.forestManagementProducer.withoutForestDegradationLevel){
       this.withoutResult1 = 0
     }
-    if(this.start1 < this.without1){
-      if(this.without1 == 1){
-        this.withoutResult1 = this.startarea1 * 19.66
+    if(this.forestManagementProducer.startForestDegradationLevel < this.forestManagementProducer.withoutForestDegradationLevel){
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 1){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * 19.66
       }
-      if(this.without1 == 2){
-        this.withoutResult1 = this.startarea1 * 39
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 2){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * 39
       }
-      if(this.without1 == 3){
-        this.withoutResult1 = this.startarea1 * 78
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 3){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * 78
       }
-      if(this.without1 == 4){
-        this.withoutResult1 = this.startarea1 * 117
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 4){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * 117
       }
-      if(this.without1 == 5){
-        this.withoutResult1 = this.startarea1 * 156
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 5){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * 156
       }
     }
-    if(this.start1 > this.without1){
-      if(this.without1 == 1){
-        this.withoutResult1 = this.startarea1 * -19.66
+    if(this.forestManagementProducer.startForestDegradationLevel > this.forestManagementProducer.withoutForestDegradationLevel){
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 1){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * -19.66
       }
-      if(this.without1 == 2){
-        this.withoutResult1 = this.startarea1 * -39
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 2){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * -39
       }
-      if(this.without1 == 3){
-        this.withoutResult1 = this.startarea1 * -78
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 3){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * -78
       }
-      if(this.without1 == 4){
-        this.withoutResult1 = this.startarea1 * -117
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 4){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * -117
       }
-      if(this.without1 == 5){
-        this.withoutResult1 = this.startarea1 * -156
+      if(this.forestManagementProducer.withoutForestDegradationLevel == 5){
+        this.withoutResult1 = this.forestManagementProducer.startForestedAreaManagement * -156
       }
     }
 
-    if(this.start1 == this.with1){
+    if(this.forestManagementProducer.startForestDegradationLevel == this.forestManagementProducer.withForestDegradationLevel){
       this.withResult1 = 0
     }
-    if(this.start1 < this.with1){
-      if(this.with1 == 1){
-        this.withResult1 = this.startarea1 * 19.66
+    if(this.forestManagementProducer.startForestDegradationLevel < this.forestManagementProducer.withForestDegradationLevel){
+      if(this.forestManagementProducer.withForestDegradationLevel == 1){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * 19.66
       }
-      if(this.with1 == 2){
-        this.withResult1 = this.startarea1 * 39
+      if(this.forestManagementProducer.withForestDegradationLevel == 2){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * 39
       }
-      if(this.with1 == 3){
-        this.withResult1 = this.startarea1 * 78
+      if(this.forestManagementProducer.withForestDegradationLevel == 3){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * 78
       }
-      if(this.with1 == 4){
-        this.withResult1 = this.startarea1 * 117
+      if(this.forestManagementProducer.withForestDegradationLevel == 4){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * 117
       }
-      if(this.with1 == 5){
-        this.withResult1 = this.startarea1 * 156
-      }
-    }
-    if(this.start1 > this.with1){
-      if(this.with1 == 1){
-        this.withResult1 = this.startarea1 * -19.66
-      }
-      if(this.with1 == 2){
-        this.withResult1 = this.startarea1 * -39
-      }
-      if(this.with1 == 3){
-        this.withResult1 = this.startarea1 * -78
-      }
-      if(this.with1 == 4){
-        this.withResult1 = this.startarea1 * -117
-      }
-      if(this.with1 == 5){
-        this.withResult1 = this.startarea1 * -156
+      if(this.forestManagementProducer.withForestDegradationLevel == 5){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * 156
       }
     }
+    if(this.forestManagementProducer.startForestDegradationLevel > this.forestManagementProducer.withForestDegradationLevel){
+      if(this.forestManagementProducer.withForestDegradationLevel == 1){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -19.66
+      }
+      if(this.forestManagementProducer.withForestDegradationLevel == 2){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -39
+      }
+      if(this.forestManagementProducer.withForestDegradationLevel == 3){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -78
+      }
+      if(this.forestManagementProducer.withForestDegradationLevel == 4){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -117
+      }
+      if(this.forestManagementProducer.withForestDegradationLevel == 5){
+        this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -156
+      }
+    }
+  }
+  forestManagementDTO = new ForestManagementDTO()
+  save(){
+   
+    this.forestManagementDTO.forestManagement = this.forestManagementProducer
+    this.forestManagementDTO.eventType = ""
+
+    this.forestService.createForestmanagment(this.forestManagementDTO).subscribe(res=>{
+      console.log(res)
+    })
+   
   }
 
   // getchart() {

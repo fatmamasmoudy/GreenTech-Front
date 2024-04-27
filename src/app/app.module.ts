@@ -25,7 +25,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './Interceptor/auth.interceptor';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { ForestManagmentComponent } from './admin/forest-managment/forest-managment.component';
 import { AdminTableDescriptionComponent } from './admin/table-description/table-description.component';

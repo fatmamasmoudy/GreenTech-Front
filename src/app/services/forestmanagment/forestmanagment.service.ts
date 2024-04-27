@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class ForestmanagmentService {
 
-  constructor() { }
+  constructor(private httpclt:HttpClient) { }
+
+  createForestmanagment(data: any)
+  {
+    return this.httpclt.post("http://localhost:8002/Create_Forest_Management", data);
+  }
 }

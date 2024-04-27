@@ -11,7 +11,7 @@ import { ForestManagementComponent } from './forest-management/forest-management
 import { TableDeforestationComponent } from './table-deforestation/table-deforestation.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { AuthGuard } from './auth.guard';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { ProjectComponent } from './admin/project/project.component';
 import { ExactoolProjectComponent } from './exactool-project/exactool-project.component';
 import { DocComponent } from './doc/doc.component';
@@ -68,10 +68,10 @@ const routes: Routes = [
       },
     ]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: "/authentication"
-  // }
+   {
+     path: '**',
+     redirectTo: "/authentication"
+   }
 ];
 
 
