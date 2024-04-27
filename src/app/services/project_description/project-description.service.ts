@@ -14,9 +14,9 @@ export class ProjectDescriptionService {
   constructor(private httpclt:HttpClient) { 
   }
 
-  createProjectDescription(projectDescription: ProjectDesc): Observable<object>
+  createProjectDescription(projectDescription: any)
   {
-    return this.httpclt.post<ProjectDesc>("http://localhost:8002/CreateProjectDescription", projectDescription);
+    return this.httpclt.post("http://localhost:8002/CreateProjectDescription", projectDescription);
   }
 
   getAllProjects():Observable<ProjectDescription[]>

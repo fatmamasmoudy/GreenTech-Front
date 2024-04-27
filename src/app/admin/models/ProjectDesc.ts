@@ -2,7 +2,7 @@ import { ProjectDescription } from "./ProjectDescription";
 
 export class ProjectDesc {
     projectDescription: ProjectDescription;
-    eventType: String;
+    eventType: any;
     constructor() {
         this.projectDescription = new ProjectDescription();
     }

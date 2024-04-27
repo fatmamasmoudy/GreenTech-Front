@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DeforestationDto } from '../models/DeforestationDto';
+import { DeforestationService } from 'app/services/deforestation/deforestation.service';
+import Swal from 'sweetalert2';
+import { Chart, registerables } from 'chart.js';
+
+
 
 @Component({
   selector: 'app-land-use-changes-admin',
@@ -6,6 +12,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./land-use-changes.component.css']
 })
 export class LandUseChangesComponentAdmin implements OnInit {
+  ngAfterViewInit(): void {
+    Chart.register(...registerables);
+    this.getchart()
+  }
+  getchart() {
+   
+  }
+  deforestationDto = new DeforestationDto()
   selectedVegetation: any
   start: any
   without: any
@@ -15,27 +29,15 @@ export class LandUseChangesComponentAdmin implements OnInit {
   withResult: any
   withoutResultTotal: any
   withResultTotal: any
-  start2: any
-  without2: any
-  with2: any
 
-  withoutResult2: any
-  withResult2: any
-  withoutResultTotal2: any
-  withResultTotal2: any
 
-  start3: any
-  without3: any
-  with3: any
 
-  withoutResult3: any
-  withResult3: any
-  withoutResultTotal3: any
-  withResultTotal3: any
   randomNumber: number;
   climate: any
   land:any
-  constructor() { }
+  constructor(
+    private deforestationService : DeforestationService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -50,15 +52,55 @@ export class LandUseChangesComponentAdmin implements OnInit {
     this.withResult = this.start - this.with
     this.withoutResultTotal = this.withoutResult * this.generateRandomDecimal(36, 150, 2)
     this.withResultTotal = this.withResult * this.generateRandomDecimal(36, 150, 2)
-    this.withoutResult2 = this.start2 - this.without2
-    this.withResult2 = this.start2 - this.with2
-    this.withoutResultTotal2 = this.withoutResult2 * this.generateRandomDecimal(36, 150, 2)
-    this.withResultTotal2 = this.withResult2 * this.generateRandomDecimal(36, 150, 2)
 
-    this.withoutResult3 = this.start3 - this.without3
-    this.withResult3 = this.start3 - this.with3
-    this.withoutResultTotal3 = this.withoutResult3 * this.generateRandomDecimal(36, 150, 2)
-    this.withResultTotal3 = this.withResult3 * this.generateRandomDecimal(36, 150, 2)
+    const data = {
+      labels: [
+        'with emission',
+        'without emission',
+        'balance '
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [this.withResultTotal, this.withoutResultTotal, this.withResultTotal-this.withoutResultTotal],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    };
+   
+    new Chart("myChartTwoo", {
+      type: 'doughnut',
+      data: data,
+    });
+ 
+  }
+
+  save(){
+    this.deforestationDto.deforestationProducer.vegetationUsed = this.selectedVegetation
+    this.deforestationDto.deforestationProducer.startForestedArea1 = this.start
+    this.deforestationDto.deforestationProducer.withForestedArea1 = this.with
+    this.deforestationDto.deforestationProducer.withoutForestedArea1 = this.without
+    this.deforestationDto.deforestationProducer.withDeforestedArea1 = this.withResult
+    this.deforestationDto.deforestationProducer.withoutDeforestedArea1 = this.withoutResult
+    this.deforestationDto.deforestationProducer.withTotDeforestation = this.withResultTotal
+    this.deforestationDto.deforestationProducer.withoutTotDeforestation = this.withoutResultTotal
+    this.deforestationDto.deforestationProducer.withTotEmissions1 = this.withoutResultTotal
+    this.deforestationDto.deforestationProducer.withoutTotEmissions1 = this.withoutResultTotal
+    this.deforestationDto.deforestationProducer.balance1 = this.withoutResultTotal - this.withResultTotal
+    this.deforestationDto.eventType = "create"
+    console.log("fffffff",this.deforestationDto)
+    this.deforestationService.createDeforestation(this.deforestationDto).subscribe(res=>{
+      Swal.fire({
+        title: "Succès !",
+        text: "Votre cours a été ajouté avec succès.",
+        icon: "success"
+      })
+    })
+
+
   }
 
 }

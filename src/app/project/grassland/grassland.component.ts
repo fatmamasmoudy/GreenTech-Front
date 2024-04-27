@@ -1,4 +1,10 @@
+
+
 import { Component, OnInit } from '@angular/core';
+import { Grassland } from 'app/admin/models/Grassland';
+import { GrasslandDto } from 'app/admin/models/GrasslandDto';
+import { GrasslandService } from 'app/services/grass-land/grassland.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-grassland',
@@ -7,7 +13,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrasslandComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private graslandService : GrasslandService
+  ) { }
+  grassland : Grassland = new Grassland()
+  grasslandDto : GrasslandDto = new GrasslandDto()
+  selectOption:any
 
   start1 : any
   without1 : any
@@ -37,12 +48,22 @@ export class GrasslandComponent implements OnInit {
   calcul(){
     this.withoutResult1 = (this.start1-this.without1) * this.generateRandomDecimal(36,150,2)
     this.withResult1 = (this.start1-this.with1) * this.generateRandomDecimal(36,150,2)
-    this.withoutResult2 = (this.start2-this.without2) * this.generateRandomDecimal(36,150,2)
-    this.withResult2 = (this.start2-this.with2) * this.generateRandomDecimal(36,150,2)
-    this.withoutResult3 = (this.start3-this.without3) * this.generateRandomDecimal(36,150,2)
-    this.withResult3 = (this.start3-this.with3) * this.generateRandomDecimal(36,150,2)
-
   }
 
 
+  save(){
+    this.grasslandDto.eventType = ""
+    this.grasslandDto.grassland = this.grassland
+    this.grasslandDto.grassland.totGrasslandSystemWith =  this.withResult1
+    this.grasslandDto.grassland.totGrasslandSystemWithout = this.withoutResult1
+    this.grasslandDto.grassland.totGrasslandSystemBalance = this.withoutResult1 - this.withResult1
+    console.log(this.grasslandDto)
+    this.graslandService.createGrassland(this.grasslandDto).subscribe(res=>{
+      Swal.fire({
+        title: "Succès !",
+        text: "Votre cours a été ajouté avec succès.",
+        icon: "success"
+      })
+    })
+  }
 }
