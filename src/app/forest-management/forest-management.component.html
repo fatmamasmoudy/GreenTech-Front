@@ -130,14 +130,14 @@
                   
                     <div class="col">
                         <select class="form-control" [(ngModel)]="forestManagementProducer.withoutFireOccurrence" name="withoutFireOccurrence">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option [ngValue]="false">No</option>
+                            <option [ngValue]="true">Yes</option>
                         </select>
                     </div>
                     <div class="col">
                         <select [(ngModel)]="forestManagementProducer.withFireOccurrence" name="withFireOccurrence" class="form-control">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option [ngValue]="false">No</option>
+                            <option [ngValue]="true">Yes</option>
                         </select>
                     </div>
                     <div class="col">
@@ -189,14 +189,14 @@
                 <hr>
                 <div class="row">
                     <div class="col">
-                        <input class="form-control" name="startForestedAreaManagement" [(ngModel)]="forestManagementProducer.startForestedAreaManagement"
+                        <input class="form-control" type="number" name="startForestedAreaManagement" [(ngModel)]="forestManagementProducer.startForestedAreaManagement"
                             placeholder="Please select">
                     </div>
                     <div class="col">
-                        <input class="form-control" placeholder="Please select">
+                        <input class="form-control" type="number" placeholder="Please select">
                     </div>
                     <div class="col">
-                        <input class="form-control" placeholder="Please select">
+                        <input class="form-control" type="number" placeholder="Please select">
                     </div>
                 </div>
                 
@@ -232,7 +232,7 @@
 
                 <td>{{withoutResult1}}</td>
                 <td>{{withResult1}}</td>
-                <td>0</td>
+                <td>{{withoutResult1 - withResult1}}</td>
             </tbody>
         </table>
         <div style="margin-top: 10px;">

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ForestManagementProducer } from 'app/admin/models/ForestManagement';
 import { ForestManagementDTO } from 'app/admin/models/ForestManagementDTO';
 import { ForestmanagmentService } from 'app/services/forestmanagment/forestmanagment.service';
-
+import Swal from 'sweetalert2';
+import { Chart, registerables } from 'chart.js';
 @Component({
   selector: 'app-forest-management',
   templateUrl: './forest-management.component.html',
@@ -25,8 +26,8 @@ export class ForestManagementComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // Chart.register(...registerables);
-    // this.getchart()
+    Chart.register(...registerables);
+    
   }
 
   calcul(){
@@ -105,15 +106,42 @@ export class ForestManagementComponent implements OnInit {
         this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -156
       }
     }
+    const data = {
+      labels: [
+        'with ',
+        'without eission',
+        'balance '
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [this.withResult1, this.withoutResult1, this.withResult1-this.withoutResult1],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
+        hoverOffset: 4
+      }]
+    };
+   
+    new Chart("myChartTwoo", {
+      type: 'doughnut',
+      data: data,
+    });
   }
   forestManagementDTO = new ForestManagementDTO()
   save(){
    
     this.forestManagementDTO.forestManagement = this.forestManagementProducer
     this.forestManagementDTO.eventType = ""
-
+    console.log(this.forestManagementDTO)
     this.forestService.createForestmanagment(this.forestManagementDTO).subscribe(res=>{
       console.log(res)
+      Swal.fire({
+        title: "Succès !",
+        text: "Votre données a été ajouté avec succès.",
+        icon: "success"
+      })
     })
    
   }
