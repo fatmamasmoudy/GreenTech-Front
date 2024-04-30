@@ -106,6 +106,10 @@ export class ForestManagementComponent implements OnInit {
         this.withResult1 = this.forestManagementProducer.startForestedAreaManagement * -156
       }
     }
+
+  }
+  forestManagementDTO = new ForestManagementDTO()
+  save(){
     const data = {
       labels: [
         'with ',
@@ -124,14 +128,10 @@ export class ForestManagementComponent implements OnInit {
       }]
     };
    
-    new Chart("myChartTwoo", {
+    new Chart("myChartTwooo", {
       type: 'doughnut',
       data: data,
     });
-  }
-  forestManagementDTO = new ForestManagementDTO()
-  save(){
-   
     this.forestManagementDTO.forestManagement = this.forestManagementProducer
     this.forestManagementDTO.eventType = ""
     console.log(this.forestManagementDTO)

@@ -20,6 +20,11 @@ export class NavbarComponent implements OnInit {
           this.sidebarVisible = false;
     }
 
+    goTologin(){
+        localStorage.removeItem("token")
+        this.router.navigateByUrl("login")
+    }
+
     ngOnInit(){
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;

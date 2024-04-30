@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('access_token')
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: [''],
